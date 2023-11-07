@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="submit"] {
+            background: #333;
+            color: #fff;
+            border: 0;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #555;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <form onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email">
+                <span id="emailError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input id="phone">
+                <span id="phoneError" class="error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="url">Website URL</label>
+                <input id="url">
+                <span id="urlError" class="error"></span>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const emailInput = document.getElementById("email");
+            const phoneInput = document.getElementById("phone");
+            const urlInput = document.getElementById("url");
+            const emailError = document.getElementById("emailError");
+            const phoneError = document.getElementById("phoneError");
+            const urlError = document.getElementById("urlError");
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const phoneRegex = /^(?:\+1|1)?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})$/;
+            const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
+
+            const emailValid = emailRegex.test(emailInput.value);
+            const phoneValid = phoneRegex.test(phoneInput.value);
+            const urlValid = urlRegex.test(urlInput.value);
+
+            if (!emailValid) {
+                emailError.textContent = "Invalid email address";
+                return false;
+            } else {
+                emailError.textContent = "";
+            }
+
+            if (!phoneValid) {
+                phoneError.textContent = "Invalid phone number (10 digits)";
+                return false;
+            } else {
+                phoneError.textContent = "";
+            }
+
+            if (!urlValid) {
+                urlError.textContent = "Invalid URL (must start with http:// or https://)";
+                return false;
+            } else {
+                urlError.textContent = "";
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+
