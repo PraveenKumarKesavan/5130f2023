@@ -1,5 +1,5 @@
 const dataURL =
-  "https://gist.githubusercontent.com/cbmgit/852c2702d4342e7811c95f8ffc2f017f/raw/InsuranceCompanies.json";
+  "https://gist.githubusercontent.com/markconroy/536228ed416a551de8852b74615e55dd/raw/cc3e4082007f1a8f39ce4b2d3569c8735b347f83/tags.json";
 const tags = document.querySelector(".tags");
 const fragment = document.createDocumentFragment();
 const maxFontSizeForTag = 6;
